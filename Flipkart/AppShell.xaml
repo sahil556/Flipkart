@@ -4,13 +4,344 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Flipkart"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:utilities="clr-namespace:Flipkart.Utilities"
+    xmlns:pages="clr-namespace:Flipkart.MVVM.Views"
+    ItemTemplate="{StaticResource ShellTemplate}"
+    MenuItemTemplate="{StaticResource MenuTemplate}"
     Title="Flipkart">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <Shell.TitleView>
+        <Grid ColumnDefinitions=".4*,.1*,.4*,.1*">
+            <Image
+                BackgroundColor="AntiqueWhite"
+                HorizontalOptions="Start"
+                Source="shell_title_logo.png"
+                HeightRequest="50"/>
+
+            <HorizontalStackLayout Grid.Column="2"
+                    HorizontalOptions="End" Spacing="10" Margin="0,0,10,0">
+                <Label
+                    Grid.Column="1"
+                    FontFamily="Icons"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    Text="{x:Static utilities:IconFont.User_Icon}"
+                    TextColor="Black"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Converter}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="Login"
+                       VerticalTextAlignment="Center"
+                       FontSize="20"/>
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
+            <Label
+                    Margin="0,0,10,0"
+                    Grid.Column="3"
+                    FontFamily="Icons"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    Text="{x:Static utilities:IconFont.Cart_Icon}"
+                    TextColor="Black"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Converter}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+        </Grid>
+    </Shell.TitleView>
+
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="#1268e0"
+                HeightRequest="60"
+                ColumnDefinitions="0.15*, 0.65*, .2*">
+
+            <Image
+                Opacity=".9"
+                HeightRequest="20">
+                <Image.Source>
+                    <FontImageSource FontFamily="Icons"
+                                     Glyph="{x:Static utilities:IconFont.User_Icon}">
+                    </FontImageSource>
+                </Image.Source>
+            </Image>
+            <Label
+                Grid.Column="1"
+                FontFamily="KanitB"
+                FontSize="Medium"
+                HorizontalOptions="Start"
+                Text="Login &amp; Signup"
+                TextColor="White"
+                VerticalOptions="Center"/>
+            <Image
+                Opacity=".9"
+                Grid.Column="2"
+                HeightRequest="20"
+                Source="flipkartlogo.png">
+            </Image>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <!-- <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid
+                ColumnDefinitions=".15*, .85*"
+                HeightRequest="50"
+                RowSpacing="0">
+                <Image
+                    HeightRequest="20"
+                    Source="{Binding FlyoutIcon}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    Margin="0,0,0,0"
+                    FontSize="17"
+                    Text="{Binding Title}"
+                    TextColor="Black"
+                    VerticalOptions="Center" />
+
+                <Rectangle
+                    x:Name="background"
+                    Grid.ColumnSpan="2"
+                    Fill="White"
+                    Opacity=".1" />
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="background" Property="Rectangle.Fill" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="background" Property="Rectangle.Fill" Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                
+            </Grid>
+            
+        </DataTemplate>
+    </Shell.ItemTemplate> -->
+
+    <!-- <FlyoutItem Title="Super Coin Zone"
+            Route="desertMirage">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.Star_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </FlyoutItem.Icon>
+
+        <ShellContent
+            Title="First Tab"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="nightDune">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="Coupons"
+            Route="desertMirage2">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.MenuMore_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </FlyoutItem.Icon>
+
+        <ShellContent
+            Title="Night Dune Buggy"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="nightDune">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="All Categories"
+            Route="desertMirage2">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.Category_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </FlyoutItem.Icon>
+
+        <ShellContent
+            Title="Night Dune Buggy"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="nightDune">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="More on Flipkart"
+            Route="desertMirage2">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.MenuMore_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </FlyoutItem.Icon>
+
+        <ShellContent
+            Title="Night Dune Buggy"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="nightDune">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="Choose Language"
+            Route="desertMirage2">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.Explore_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </FlyoutItem.Icon>
+
+        <ShellContent
+            Title="Night Dune Buggy"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="nightDune">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+     -->
+    <FlyoutItem Title="My Account"
+            Route="HomePage">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.User_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </FlyoutItem.Icon>
+
+        <ShellContent
+            Title="Night Dune Buggy"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="Home">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="My Orders"
+            Route="desertMirage2">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </FlyoutItem.Icon>
+
+        <ShellContent
+            Title="Night Dune Buggy"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="nightDune">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Order_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="My Cart"
+            Route="MyCart">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.Cart_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </FlyoutItem.Icon>
+
+        <ShellContent
+            Title="Night Dune Buggy"
+            ContentTemplate="{DataTemplate pages:MyCart}"
+            Route="MyCart">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="My WishList"
+            Route="desertMirage2">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.Wishlist_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </FlyoutItem.Icon>
+
+        <ShellContent
+            Title="Night Dune Buggy"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="nightDune">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+
+    <MenuItem Command="{Binding HelpCommand}"
+            Text="Notification Preferences">
+        <MenuItem.IconImageSource>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </MenuItem.IconImageSource>
+    </MenuItem>
+
+    <MenuItem Command="{Binding ShowOffersCommand}"
+            Text="Help Center">
+        <MenuItem.IconImageSource>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.Home_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </MenuItem.IconImageSource>
+    </MenuItem>
 
 </Shell>
 

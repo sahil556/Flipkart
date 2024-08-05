@@ -42,4 +42,12 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <Color x:Key="Footer">#E9ECEF</Color>
+    <Color x:Key="BGColor">#F6F4F5</Color>
+    <Color x:Key="IconColor">#000</Color>
+    <Color x:Key="FlipkartBlue">#027CD5</Color>
+    <Color x:Key="FlipkartYellow">#FFDE14</Color>
+    <Color x:Key="FlipkartBlack">#353535</Color>
+
 </ResourceDictionary>

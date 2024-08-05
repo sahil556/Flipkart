@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flipkart.MVVM.Views.LoginPage"
+             Title="LoginPage"
+             xmlns:utilities="clr-namespace:Flipkart.Utilities"
+             Shell.NavBarIsVisible="False">
+        <Grid RowDefinitions=".1*,.8*,.1*">
+                <Grid ColumnDefinitions=".1*,.9*"
+                      BackgroundColor="{StaticResource FlipkartBlue}">
+                        <Label Text="x"
+                               TextColor="White"
+                               FontSize="25"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Label.GestureRecognizers>
+                        </Label>
+                        <Image Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                        HeightRequest="35"
+                                        Source="fliplogo.svg"
+                                        HorizontalOptions="Center"/>
+                </Grid>
+                <Border Grid.Row="1"
+                        Margin="0,-15,0,0"
+                        StrokeShape="RoundRectangle 15,15,0,0"
+                        StrokeThickness="0"
+                        BackgroundColor="White">
+
+                        <Grid RowDefinitions=".3*,.15*,.2*,*"
+                              Margin="20,0,20,0">
+                                <VerticalStackLayout VerticalOptions="Center">
+                                        <Label Text="Log in for the best experience"
+                                               FontSize="18"
+                                               FontAttributes="Bold"/>
+                                        <Label Text="Enter your phone number to continue"
+                                               TextColor="Grey"
+                                               FontSize="15"
+                                               Margin="0,5,0,0"/>
+                                </VerticalStackLayout>
+                                <Border Grid.Row="1"
+                                        StrokeShape="RoundRectangle 5,5,5,5"
+                                        Padding="10">
+                                        <Entry Placeholder="Email ID"
+                                               FontSize="15"
+                                               x:Name="entry"
+                                               Completed="Entry_Completed"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="Center"/>
+                                </Border>
+                                <VerticalStackLayout Grid.Row="2"
+                                                     Margin="0,10,0,0"
+                                                     Spacing="15">
+                                        <Label Text="Use Phone Number"
+                                               HorizontalTextAlignment="End"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource FlipkartBlue}"/>
+                                        <FlexLayout Direction="Row"
+                                                    Wrap="Wrap">
+                                                <Label Text="By continuing, you agree to Flipkart's"
+                                                       FontSize="15"/>
+                                                <Label Text="Terms of Use"
+                                                       FontSize="15"
+                                                       TextColor="{StaticResource FlipkartBlue}"/>
+                                                <Label Text="and"
+                                                       FontSize="15"/>
+                                                <Label Text=" Privacy Policy"
+                                                       FontSize="15"
+                                                       TextColor="{StaticResource FlipkartBlue}"/>
+                                        </FlexLayout>
+                                </VerticalStackLayout>
+                        </Grid>
+                </Border>
+                <VerticalStackLayout Grid.Row="2"
+                                     VerticalOptions="Center">
+                        <BoxView HeightRequest="0.5"/>
+                        <Button x:Name="continueBtn"
+                                Text="Continue"
+                                TextColor="white"
+                                BackgroundColor="Orange"
+                                FontAttributes="Bold"
+                                Margin="20,10"
+                                VerticalOptions="Center"
+                                IsEnabled="False"/>
+                </VerticalStackLayout>
+        </Grid>
+</ContentPage>

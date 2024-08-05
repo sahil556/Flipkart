@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utilities="clr-namespace:Flipkart.Utilities"
+             x:Class="Flipkart.MVVM.Views.HomePage"
+             xmlns:viewModels="clr-namespace:Flipkart.MVVM.ViewModels"
+             Title="HomePage">
+    <Grid RowDefinitions=".09*,.9*">
+        <Border
+            BackgroundColor="AliceBlue"
+            Margin="20,10"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            StrokeThickness="0">
+            <HorizontalStackLayout Spacing="15"
+                                   HorizontalOptions="Start"
+                                   Padding="20,0">
+                <Image
+                    HorizontalOptions="Start"
+                    HeightRequest="20">
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="Icons"
+                            Glyph="{x:Static utilities:IconFont.Search_Icon}"
+                            Color="grey">
+                        </FontImageSource>
+                    </Image.Source>
+                </Image>
+                <Label FontSize="15"
+                       TextColor="Grey"
+                       Text="Search for Products, Brands and More"
+                       VerticalTextAlignment="Center"/>
+            </HorizontalStackLayout>
+        </Border>
+        <ScrollView Grid.Row="1"
+                    x:Name="ScrollView">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <CarouselView
+                    Margin="10,0"
+                    x:Name="CarouselView"
+                    Grid.RowSpan="2"
+                    ItemsSource="{Binding CarouselOptions}"
+                    IndicatorView="indicatorView">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                StrokeShape="RoundRectangle 10,10,10,10"
+                                StrokeThickness="0">
+                                <Image
+                                    Aspect="Fill"
+                                    Source="{Binding .}"/>
+                            </Border>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="indicatorView"
+                               Grid.Row="1"
+                               IndicatorColor="LightGray"
+                               SelectedIndicatorColor="DarkGray"
+                               HorizontalOptions="Center"
+                               VerticalOptions="End"
+                               Margin="0,0,0,10">
+                </IndicatorView>
+                <CollectionView Grid.Row="2"
+                                ItemsSource="{Binding MedItems}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Image HeightRequest="120" Source="{Binding ., StringFormat='MedImg/{0}'}">
+                                <Image.GestureRecognizers>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <BoxView HeightRequest="0.1"
+                         Opacity="0.1"
+                         BackgroundColor="black"
+                         Grid.Row="2"
+                         VerticalOptions="End"/>
+                <Grid Grid.Row="3"
+                      ColumnDefinitions="*,*,*">
+                    <Image Source="smallimg1.jpg">
+                        <Image.GestureRecognizers>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="smallimg2.jpg"
+                           Grid.Column="1">
+                        <Image.GestureRecognizers>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="smallimg3.jpg"
+                           Grid.Column="2">
+                        <Image.GestureRecognizers>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                </Grid>
+
+                <VerticalStackLayout Grid.Row="4"
+                                     Margin="10"
+                                     Spacing="10">
+                    <Label Text="Featured Products"
+                           FontSize="20"
+                           FontAttributes="Bold"/>
+                    <CollectionView Margin="10,0,10,0"
+                            EmptyView="No Items"
+                            ItemsSource="{Binding Products}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Span="2"
+                                             Orientation="Vertical"
+                                             VerticalItemSpacing="10"
+                                             HorizontalItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+                        <!-- <CollectionView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Test</x:String>
+                                <x:String>Test</x:String>
+                                <x:String>Test</x:String>
+                                <x:String>Test</x:String>
+                            </x:Array>
+                        </CollectionView.ItemsSource> -->
+                        <!-- <CollectionView.EmptyViewTemplate>
+                            <DataTemplate>
+                                <ContentView>
+                                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                                 VerticalOptions="CenterAndExpand">
+                                        <Label Text="No results matched your filter."
+                                               Margin="10,25,10,10"
+                                               FontAttributes="Bold"
+                                               FontSize="18"
+                                               HorizontalOptions="Fill"
+                                               HorizontalTextAlignment="Center"/>   
+                                    </StackLayout>
+                                </ContentView>
+                            </DataTemplate>
+                        </CollectionView.EmptyViewTemplate> -->
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 10,10,10,10">
+                                    <VerticalStackLayout BackgroundColor="{StaticResource Gray100}"
+                                                         Padding="10">
+                                        <Border StrokeShape="RoundRectangle 10,10,10,10"
+                                                Padding="10,20"
+                                                BackgroundColor="White"
+                                                StrokeThickness="0">
+                                            <Image
+                                                HeightRequest="100"
+                                                Source="{Binding image}"/>
+                                        </Border>
+                                        <Label
+                                            Margin="0,10,0,0"
+                                            HorizontalOptions="Start"
+                                            FontSize="15"
+                                            Text="{Binding title}"/>
+                                        <Label
+                                            HorizontalOptions="Start"
+                                            FontSize="15"
+                                            Text="{Binding price, StringFormat='{0:C}'}"
+                                            FontAttributes="Bold"/>
+                                        <VerticalStackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ShowProductCommand, Source={RelativeSource AncestorType={x:Type viewModels:HomePageViewModel}}}"
+                                                CommandParameter="{Binding id}">
+                                            </TapGestureRecognizer>
+                                        </VerticalStackLayout.GestureRecognizers>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

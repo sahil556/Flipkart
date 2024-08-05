@@ -424,5 +424,82 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+     <DataTemplate x:Key="ShellTemplate">
+            <Grid
+                ColumnDefinitions=".15*, .85*"
+                HeightRequest="50"
+                RowSpacing="0">
+                <Image
+                    HeightRequest="20"
+                    Source="{Binding FlyoutIcon}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    Margin="0,0,0,0"
+                    FontSize="17"
+                    Text="{Binding Title}"
+                    TextColor="Black"
+                    VerticalOptions="Center" />
+
+                <Rectangle
+                    x:Name="background"
+                    Grid.ColumnSpan="2"
+                    Fill="White"
+                    Opacity=".1" />
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="background" Property="Rectangle.Fill" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="background" Property="Rectangle.Fill" Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="MenuTemplate">
+            <Grid
+                HeightRequest="50"
+                RowSpacing="0">
+               
+                <Label
+                    Margin="20,0,0,0"
+                    FontSize="17"
+                    Text="{Binding Title}"
+                    TextColor="Black"
+                    VerticalOptions="Center" />
+                <Rectangle
+                    x:Name="background"
+                    Grid.ColumnSpan="2"
+                    Fill="White"
+                    Opacity=".1" />
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="background" Property="Rectangle.Fill" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="background" Property="Rectangle.Fill" Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+        </DataTemplate>
+    
 </ResourceDictionary>
 

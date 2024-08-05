@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flipkart.MVVM.Views.ProductPage"
+             xmlns:viewModels="clr-namespace:Flipkart.MVVM.ViewModels"
+             xmlns:utilities="clr-namespace:Flipkart.Utilities"
+             Title="ProductPage">
+    <Shell.TitleView>
+        <HorizontalStackLayout HorizontalOptions="End">
+            <Image Margin="0,0,10,0" >
+                <Image.Source>
+                    <FontImageSource 
+                        FontFamily="Icons"
+                        Color="Black"
+                        Glyph="{x:Static utilities:IconFont.Star_Icon}">
+                    </FontImageSource>
+                </Image.Source>
+            </Image>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin"
+                    Value="15,0"/>
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout BackgroundColor="{StaticResource Gray100}"
+                Spacing="10">
+            <Border StrokeShape="RoundRectangle 0,0,40,40"
+                    BackgroundColor="White"
+                    StrokeThickness="0"
+                    Padding="0,0,0,20"
+                    VerticalOptions="Start">
+                <Image Source="{Binding Product.image}"
+                        HeightRequest="200"/>
+            </Border>
+            <Label Text="Available"
+                    FontSize="15"
+                    FontAttributes="Bold"
+                    TextColor="Green"/>
+            <Label Text="{Binding Product.title}"
+                    FontSize="20"/>
+            <Grid ColumnDefinitions="*,*">
+                <Label Text="{Binding Product.price, StringFormat='{0:C}'}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        VerticalTextAlignment="Center"/>
+                <Button TextColor="White"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        Margin="0,0,10,0"
+                        BackgroundColor="Orange"
+                        Text="Add to cart"
+                        HorizontalOptions="End"/>
+            </Grid>
+            <VerticalStackLayout BackgroundColor="White" Padding="0,20">
+                <Label Text="Product Description"
+                        FontAttributes="Bold"/>
+                <Label Text="{Binding Product.description}" TextColor="{StaticResource Gray600}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout BackgroundColor="White" Padding="0,20">
+                <Label Text="Category"
+                        FontAttributes="Bold"/>
+                <Label Text="{Binding Product.category}" TextColor="{StaticResource Gray900}"/>
+            </VerticalStackLayout>
+            <Label  Text="Reviews"
+                    FontAttributes="Bold"/>
+            <Border BackgroundColor="AntiqueWhite"
+                    StrokeShape="RoundRectangle 15,15,15,15"
+                    Margin="10,0"
+                    Padding="10">
+                    <Image HorizontalOptions="End">
+                        <Image.Source>
+                            <FontImageSource FontFamily="Icons"
+                                            Color="Black"
+                                            Glyph="{x:Static utilities:IconFont.Plus_Icon}">
+                            </FontImageSource>
+                </Image.Source>
+                    </Image>
+            </Border>
+            <Label  Text="You may also like"
+                    FontAttributes="Bold"/>
+            <CollectionView ItemsSource="{Binding SimilarProducts}" ItemsLayout="HorizontalList" Margin="0,0,0,20">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                                    <VerticalStackLayout BackgroundColor="{StaticResource Gray100}"
+                                                         Padding="10">
+                                        <Border StrokeShape="RoundRectangle 10,10,10,10"
+                                                Padding="10,20"
+                                                BackgroundColor="White"
+                                                StrokeThickness="0">
+                                            <Image
+                                                Aspect="AspectFit"
+                                                HeightRequest="100"
+                                                Source="{Binding image}"/>
+                                        </Border>
+                                        <Grid RowDefinitions="*,*" Margin="0,0,0,0">
+                                        <Label
+                                            Margin="10,10,0,0"
+                                            WidthRequest="150"
+                                            FontSize="15"
+                                            Text="{Binding title}"/>
+                                        <Label
+                                            Grid.Row="1"
+                                            HorizontalOptions="Start"
+                                            FontSize="15"
+                                             Margin="10,10,0,0"
+                                            Text="{Binding price, StringFormat='{0:C}'}"
+                                            FontAttributes="Bold"/>
+                                        </Grid>
+                                        <VerticalStackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ShowProductCommand, Source={RelativeSource AncestorType={x:Type viewModels:HomePageViewModel}}}"
+                                                CommandParameter="{Binding id}">
+                                            </TapGestureRecognizer>
+                                        </VerticalStackLayout.GestureRecognizers>
+                                    </VerticalStackLayout>
+                               
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

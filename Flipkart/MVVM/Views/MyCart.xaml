@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flipkart.MVVM.Views.MyCart"
+             Title="MyCart">
+    <Shell.TitleView>
+        <Label Text="Your Cart"
+                FontSize="20"
+                FontAttributes="Bold"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Start"/>
+    </Shell.TitleView>
+        <VerticalStackLayout>
+            <CollectionView ItemsSource="{Binding CartProducts}" EmptyView="Your Cart's item will be Displayed Here">
+                <!-- <CollectionView.EmptyViewTemplate>
+                    <DataTemplate>
+                        <IndicatorView HeightRequest="50"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Fill"/>
+                    </DataTemplate>
+                </CollectionView.EmptyViewTemplate> -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeThickness="0"
+                                BackgroundColor="{StaticResource Gray100}"
+                                StrokeShape="RoundRectangle 20,20,20,20"
+                                Padding="10"
+                                Margin="10">
+                            <Grid ColumnDefinitions="0.6*,0.4*">
+                                <VerticalStackLayout Margin="10,10,20,0"
+                                        Spacing="5">
+                                    <Border StrokeShape="RoundRectangle 10,10,10,10"
+                                            BackgroundColor="White"
+                                            HorizontalOptions="Start"
+                                            Padding="5"
+                                            StrokeThickness="0">
+                                        <Label Text="{Binding category}"/>
+                                    </Border>
+                                    <Label Text="{Binding title}"
+                                            FontAttributes="Bold"/>
+                                    <HorizontalStackLayout>
+                                        <Button Text="-"
+                                                BackgroundColor="Transparent"
+                                                TextColor="black"/>
+                                        <Border VerticalOptions="Center"
+                                                StrokeThickness="0"
+                                                BackgroundColor="White"
+                                                StrokeShape="RoundRectangle 5,5,5,5"
+                                                Padding="5">
+                                            <Label Text="{Binding description}"/>
+                                        </Border>
+                                        <Button Text="+"
+                                                BackgroundColor="Transparent"
+                                                TextColor="black"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                                <Border Grid.Column="1"
+                                        BackgroundColor="White"
+                                        StrokeShape="RoundRectangle 20,20,20,20"
+                                        StrokeThickness="0"
+                                        Padding="20">
+                                    <Grid>
+                                        <Image Source="{Binding image}"
+                                                HeightRequest="100"/>
+                                        <Border HorizontalOptions="End"
+                                                Padding="5"
+                                                VerticalOptions="Start"
+                                                BackgroundColor="Orange"
+                                                StrokeThickness="0"
+                                                StrokeShape="RoundRectangle 10,10">
+                                            <Label Text="{Binding price, StringFormat='{0:C}'}"
+                                                    TextColor="White"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+</ContentPage>

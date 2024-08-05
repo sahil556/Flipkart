@@ -6,5 +6,10 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 	}
+
+	public void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+	{
+		Shell.Current.GoToAsync("LoginPage");
+	}
 }
 
