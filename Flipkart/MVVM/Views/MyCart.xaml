@@ -16,8 +16,7 @@
      <ContentPage.Behaviors>
         <behaviors:EventToCommandBehavior Command="{Binding InitCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
-        <VerticalStackLayout>
-            <Grid RowDefinitions="*">
+        <Grid RowDefinitions="*">
             <CollectionView ItemsSource="{Binding CartProducts}">
                 <CollectionView.EmptyView>
                     <Grid>
@@ -100,6 +99,6 @@
                 IsRunning="{Binding IsBusy}"
                 HorizontalOptions="Center"
             />
-            </Grid>
-        </VerticalStackLayout>
+    </Grid>
+        
 </ContentPage>
