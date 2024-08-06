@@ -3,10 +3,12 @@ using System.Text.Json;
 using Flipkart.MVVM.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Flipkart.Services;
 namespace Flipkart.MVVM.ViewModels;
 
 public partial class HomePageViewModel
 {
+    private readonly ProductService productService;
     public List<string> CarouselOptions { get; set; }
 	public List<string> SmallItems { get; set; }
 	public List<string> MedItems { get; set; }
@@ -14,11 +16,12 @@ public partial class HomePageViewModel
     public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
     HttpClient client;
     JsonSerializerOptions options;
-    public HomePageViewModel()
+    public HomePageViewModel(ProductService _productService)
     {
         client = new HttpClient();
         options = new JsonSerializerOptions { WriteIndented = true };
         FillCarouselOptions();
+        productService = _productService;
         LoadProducts();
     }
 
@@ -51,19 +54,12 @@ public partial class HomePageViewModel
 
     private async void LoadProducts()
     {
-        string baseUrl = "https://fakestoreapi.com/products";
-        try{
-            var response = await client.GetAsync(baseUrl);
-            if(response.IsSuccessStatusCode)
+        try
+        {
+            var data = await productService.GetProductsAsync();
+            foreach (var product in data)
             {
-               using (var responseStream = await response.Content.ReadAsStreamAsync())
-               {
-                 var data = await JsonSerializer.DeserializeAsync<List<Product>>(responseStream, options);
-                 foreach (var product in data)
-                 {
-                    Products.Add(product);
-                 }
-               }
+                Products.Add(product);
             }
         }
         catch(Exception ex)

@@ -34,6 +34,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<RestService>();
 		builder.Services.AddSingleton<AuthService>();
 		builder.Services.AddSingleton<AppShellViewModel>();
+		builder.Services.AddSingleton<ProductService>();
+
 		Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoUnderline", (h, v) =>
         {
             h.PlatformView.BackgroundTintList =
