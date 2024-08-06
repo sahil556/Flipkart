@@ -4,6 +4,7 @@
              x:Class="Flipkart.MVVM.Views.MyCart"
              xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:Flipkart.MVVM.ViewModels"
              Title="MyCart">
     <Shell.TitleView>
         <Label Text="Your Cart"
@@ -52,7 +53,9 @@
                                     <HorizontalStackLayout>
                                         <Button Text="-"
                                                 BackgroundColor="Transparent"
-                                                TextColor="black"/>
+                                                TextColor="black"
+                                                CommandParameter="{Binding id}"
+                                                Command="{Binding DecrementProductQuantityCommand,Source={RelativeSource AncestorType={x:Type local:MyCartViewModel}}}"/>
                                         <Border VerticalOptions="Center"
                                                 StrokeThickness="0"
                                                 BackgroundColor="White"
@@ -62,7 +65,9 @@
                                         </Border>
                                         <Button Text="+"
                                                 BackgroundColor="Transparent"
-                                                TextColor="black"/>
+                                                TextColor="black"
+                                                Command="{Binding IncrementProductQuantityCommand, Source={RelativeSource AncestorType={x:Type local:MyCartViewModel}}}"
+                                                CommandParameter="{Binding id}"/>
                                     </HorizontalStackLayout>
                                 </VerticalStackLayout>
                                 <Border Grid.Column="1"

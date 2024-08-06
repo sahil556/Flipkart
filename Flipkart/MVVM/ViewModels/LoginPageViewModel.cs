@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Flipkart.Helpers;
 using Flipkart.Services;
@@ -44,6 +46,8 @@ public partial class LoginPageViewModel: ObservableObject
             shellViewModel.IsUserLoggedIn = true;
             shellViewModel.UserName = Email;
             await Shell.Current.GoToAsync("//HomePage/Home");
+            var toast = Toast.Make("Login Successfully", ToastDuration.Short, 14);
+            toast.Show();
         }
         IsBusy = false;
         // Settings.Instance.IsUserLoggedIn = true;

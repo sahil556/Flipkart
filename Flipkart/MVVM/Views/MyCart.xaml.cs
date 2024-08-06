@@ -1,3 +1,4 @@
+using Flipkart.MVVM.ViewModels;
 namespace Flipkart.MVVM.Views;
 
 public partial class MyCart : ContentPage

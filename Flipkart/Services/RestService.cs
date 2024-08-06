@@ -75,6 +75,28 @@ public class RestService
         }
     }
 
+    protected async Task<T> PutAsync<T> (string endpoint, object payload)
+    {
+        if(!IsInternetAvailable())
+            return default;
+        
+        try{
+            string json = JsonSerializer.Serialize(payload);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync(endpoint, content);
+            response.EnsureSuccessStatusCode();
+            using(var responseStream = await response.Content.ReadAsStreamAsync())
+            {
+                return JsonSerializer.Deserialize<T>(responseStream);
+            }
+        }
+        catch(Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Error", "Unable to Update Data", "Ok");
+            return default;
+        }
+    }
+
     private bool IsInternetAvailable()
     {
         NetworkAccess accessType = Connectivity.NetworkAccess;

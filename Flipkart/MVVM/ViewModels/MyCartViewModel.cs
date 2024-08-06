@@ -1,11 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.Json;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Flipkart.MVVM.Models;
 using Flipkart.Services;
 
-namespace Flipkart;
+namespace Flipkart.MVVM.ViewModels;
 
 public partial class MyCartViewModel: ObservableObject
 {
@@ -14,7 +16,9 @@ public partial class MyCartViewModel: ObservableObject
 
     private readonly CartService cartService;
     private readonly ProductService productService;
-    public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
+    
+    [ObservableProperty]
+    public ObservableCollection<Product> products = new ObservableCollection<Product>();
 
     [ObservableProperty]
     public ObservableCollection<Product> cartProducts = new ObservableCollection<Product>();
@@ -24,6 +28,8 @@ public partial class MyCartViewModel: ObservableObject
 
     [ObservableProperty]
     public bool isUserLoggedIn;
+
+    public int cartId {get; set;}
 
     public MyCartViewModel(CartService _cartService, ProductService _productService)
     {
@@ -37,6 +43,36 @@ public partial class MyCartViewModel: ObservableObject
     public void Init()
     {
         LoadProducts();
+    }
+
+    [RelayCommand]
+    public async void DecrementProductQuantity(int productId)
+    {   
+        IsBusy = true;
+        var response = await cartService.DecrementProductQuantity(cartId, (productId), 1);
+        if(response != null)
+        {
+            LoadProducts();
+            CancellationToken cancellationToken = new CancellationToken();
+            var toast = Toast.Make("Product Quantity Decremented",ToastDuration.Short, 14);
+            await toast.Show(cancellationToken);
+        }
+        IsBusy = false;
+    }
+
+    [RelayCommand]
+    public async void IncrementProductQuantity(int productId)
+    {   
+        IsBusy = true;
+        var response = await cartService.AddProductAsync((productId), 1);
+        if(response != null)
+        {
+            LoadProducts();
+            CancellationToken cancellationToken = new CancellationToken();
+            var toast = Toast.Make("Product Quantity Incremented",ToastDuration.Short, 14);
+            await toast.Show(cancellationToken);
+        }
+        IsBusy = false;
     }
     private async void LoadProducts()
     {
@@ -61,7 +97,8 @@ public partial class MyCartViewModel: ObservableObject
                var cartResponse = await cartService.GetCartByUserIdAsync(userId);
                if(cartResponse != null)
                {
-                    CartProducts.Clear();
+                    cartId = cartResponse.id;
+                    CartProducts = new ObservableCollection<Product>();
                     foreach (var product in cartResponse.products)
                     {
                         var prod = Products.FirstOrDefault(p => p.id == product.productId);
