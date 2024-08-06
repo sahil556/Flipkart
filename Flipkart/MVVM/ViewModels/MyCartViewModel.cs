@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Flipkart.MVVM.Models;
+using Flipkart.Services;
 
 namespace Flipkart;
 
@@ -10,49 +12,61 @@ public partial class MyCartViewModel: ObservableObject
     HttpClient client;
     JsonSerializerOptions options;
 
+    private readonly CartService cartService;
+    private readonly ProductService productService;
     public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
 
     [ObservableProperty]
     public ObservableCollection<Product> cartProducts = new ObservableCollection<Product>();
 
+    [ObservableProperty]
+    public bool isBusy;
 
-    public MyCartViewModel()
+    [ObservableProperty]
+    public bool isUserLoggedIn;
+
+    public MyCartViewModel(CartService _cartService, ProductService _productService)
     {
         client = new HttpClient();
+        cartService = _cartService;
+        productService = _productService;
         options = new JsonSerializerOptions { WriteIndented = true };
         LoadProducts();
     }
 
+    [RelayCommand]
+    public void Init()
+    {
+        
+    }
     private async void LoadProducts()
     {
-        await Task.Delay(2000);
-        string baseUrl = "https://fakestoreapi.com/products";
-        try{
-            var response = await client.GetAsync(baseUrl);
-            if(response.IsSuccessStatusCode)
+        IsBusy = true;
+        try
+        {
+            string userId = await SecureStorage.Default.GetAsync("userid");
+            if(string.IsNullOrEmpty(userId))
             {
-               using (var responseStream = await response.Content.ReadAsStreamAsync())
-               {
-                 var data = await JsonSerializer.DeserializeAsync<List<Product>>(responseStream, options);
-                 foreach (var product in data)
-                 {
-                    Products.Add(product);
-                 }
-               }
+                IsUserLoggedIn = false;
+                return;
+            }
+            IsUserLoggedIn = true;
+            var response = await productService.GetProductsAsync();
+            if(response != null)
+            {
+                foreach (var product in response)
+                {
+                Products.Add(product);
+                }
 
-               baseUrl = "https://fakestoreapi.com/carts/5";
-               var cartResponse = await client.GetAsync(baseUrl);
-               if(cartResponse.IsSuccessStatusCode)
+               var cartResponse = await cartService.GetCartByUserIdAsync(userId);
+               if(cartResponse != null)
                {
-                    using (var responseStream = await cartResponse.Content.ReadAsStreamAsync())
+                    foreach (var product in cartResponse.products)
                     {
-                        var data = await JsonSerializer.DeserializeAsync<Cart>(responseStream, options);
-                        foreach (var product in data.products)
-                        {
-                            var prod = Products.FirstOrDefault(p => p.id == product.productId);
-                            prod.description = product.quantity.ToString();
-                            CartProducts.Add(prod);
-                        }
+                        var prod = Products.FirstOrDefault(p => p.id == product.productId);
+                        prod.description = product.quantity.ToString();
+                        CartProducts.Add(prod);
                     }
                }
             }
@@ -61,6 +75,9 @@ public partial class MyCartViewModel: ObservableObject
         catch(Exception ex)
         {
             Console.WriteLine($"Error loading products: {ex.Message}");
+        }
+        finally{
+            IsBusy = false;
         }
     }
 

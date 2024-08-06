@@ -39,6 +39,7 @@ public partial class LoginPageViewModel: ObservableObject
         if(loginResponse != null)
         {
             await SecureStorage.Default.SetAsync("token", loginResponse.Token);
+            await SecureStorage.Default.SetAsync("userid", loginResponse.UserID.ToString());
             authService.IsUserLoggedIn = true;
             shellViewModel.IsUserLoggedIn = true;
             shellViewModel.UserName = Email;

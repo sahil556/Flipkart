@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Flipkart.MVVM.Views.MyCart"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="MyCart">
     <Shell.TitleView>
         <Label Text="Your Cart"
@@ -11,6 +13,7 @@
                 HorizontalTextAlignment="Start"/>
     </Shell.TitleView>
         <VerticalStackLayout>
+            <Grid RowDefinitions="*">
             <CollectionView ItemsSource="{Binding CartProducts}">
                 <CollectionView.EmptyView>
                     <Grid>
@@ -83,5 +86,12 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <ActivityIndicator
+                VerticalOptions="Center"
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                HorizontalOptions="Center"
+            />
+            </Grid>
         </VerticalStackLayout>
 </ContentPage>

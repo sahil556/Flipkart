@@ -7,12 +7,15 @@ public class RestService
 {
     protected HttpClient client;
 
+    JsonSerializerOptions options;
+
     public RestService()
     {
         client = new HttpClient
         {
             BaseAddress = new Uri("https://fakestoreapi.com/")
         };
+        options = new JsonSerializerOptions { WriteIndented = true };
     }
 
     protected async Task<T> GetAsync<T>(string endpoint)
@@ -25,7 +28,7 @@ public class RestService
             response.EnsureSuccessStatusCode();
             using(var responseContent = await response.Content.ReadAsStreamAsync())
             {
-                return JsonSerializer.Deserialize<T>(responseContent);
+                return JsonSerializer.Deserialize<T>(responseContent, options);
             }
         }
         catch(Exception ex)

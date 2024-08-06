@@ -35,6 +35,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<AuthService>();
 		builder.Services.AddSingleton<AppShellViewModel>();
 		builder.Services.AddSingleton<ProductService>();
+		builder.Services.AddSingleton<CartService>();
 
 		Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoUnderline", (h, v) =>
         {
