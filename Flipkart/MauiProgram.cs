@@ -3,6 +3,8 @@ using Flipkart.MVVM.ViewModels;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using Flipkart.Services;
+using CommunityToolkit.Maui;
 namespace Flipkart;
 
 public static class MauiProgram
@@ -12,7 +14,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -27,7 +29,11 @@ public static class MauiProgram
 		builder.Services.AddTransient<ProductPage>();
 		builder.Services.AddTransient<MyCartViewModel>();
 		builder.Services.AddTransient<MyCart>();
-		
+		builder.Services.AddTransient<LoginPageViewModel>();
+		builder.Services.AddTransient<LoginPage>();
+		builder.Services.AddSingleton<RestService>();
+		builder.Services.AddSingleton<AuthService>();
+		builder.Services.AddSingleton<AppShellViewModel>();
 		Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoUnderline", (h, v) =>
         {
             h.PlatformView.BackgroundTintList =

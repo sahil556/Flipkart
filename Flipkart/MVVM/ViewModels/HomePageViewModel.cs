@@ -21,6 +21,8 @@ public partial class HomePageViewModel
         FillCarouselOptions();
         LoadProducts();
     }
+
+    
     private async void FillCarouselOptions()
     {
         CarouselOptions =  new List<string>{

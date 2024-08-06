@@ -11,14 +11,19 @@
                 HorizontalTextAlignment="Start"/>
     </Shell.TitleView>
         <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding CartProducts}" EmptyView="Your Cart's item will be Displayed Here">
-                <!-- <CollectionView.EmptyViewTemplate>
-                    <DataTemplate>
-                        <IndicatorView HeightRequest="50"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Fill"/>
-                    </DataTemplate>
-                </CollectionView.EmptyViewTemplate> -->
+            <CollectionView ItemsSource="{Binding CartProducts}">
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Image 
+                                HeightRequest="150"
+                                Source="dotnet_bot.png"
+                                VerticalOptions="Center"/>
+                            <Label Text="No Items Found in your cart" FontAttributes="Bold"
+                            HorizontalTextAlignment="Center" FontSize="Large"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border StrokeThickness="0"

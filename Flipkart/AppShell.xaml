@@ -3,13 +3,18 @@
     x:Class="Flipkart.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:local="clr-namespace:Flipkart"
     xmlns:utilities="clr-namespace:Flipkart.Utilities"
     xmlns:pages="clr-namespace:Flipkart.MVVM.Views"
     ItemTemplate="{StaticResource ShellTemplate}"
     MenuItemTemplate="{StaticResource MenuTemplate}"
     Title="Flipkart">
-
+    <Shell.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </Shell.Resources>
     <Shell.TitleView>
         <Grid ColumnDefinitions=".4*,.1*,.4*,.1*">
             <Image
@@ -19,6 +24,7 @@
                 HeightRequest="50"/>
 
             <HorizontalStackLayout Grid.Column="2"
+                    IsVisible="{Binding IsUserLoggedIn,Converter={StaticResource InvertedBoolConverter}}"
                     HorizontalOptions="End" Spacing="10" Margin="0,0,10,0">
                 <Label
                     Grid.Column="1"
@@ -49,7 +55,7 @@
                     TextColor="Black"
                     VerticalOptions="Center">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Converter}"/>
+                        <TapGestureRecognizer x:Name="cartIcon" Tapped="cartIcon_Tapped"/>
                     </Label.GestureRecognizers>
                 </Label>
         </Grid>
@@ -74,7 +80,7 @@
                 FontFamily="KanitB"
                 FontSize="Medium"
                 HorizontalOptions="Start"
-                Text="Login &amp; Signup"
+                Text="{Binding UserName}"
                 TextColor="White"
                 VerticalOptions="Center"/>
             <Image

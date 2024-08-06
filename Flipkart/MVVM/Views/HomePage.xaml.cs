@@ -26,7 +26,6 @@ public partial class HomePage : ContentPage
 			CarouselView.ScrollTo(CarouselView.Position);
 		});
 	}
-
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
