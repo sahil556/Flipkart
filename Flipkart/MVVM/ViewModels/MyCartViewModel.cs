@@ -31,13 +31,12 @@ public partial class MyCartViewModel: ObservableObject
         cartService = _cartService;
         productService = _productService;
         options = new JsonSerializerOptions { WriteIndented = true };
-        LoadProducts();
     }
 
     [RelayCommand]
     public void Init()
     {
-        
+        LoadProducts();
     }
     private async void LoadProducts()
     {
@@ -62,6 +61,7 @@ public partial class MyCartViewModel: ObservableObject
                var cartResponse = await cartService.GetCartByUserIdAsync(userId);
                if(cartResponse != null)
                {
+                    CartProducts.Clear();
                     foreach (var product in cartResponse.products)
                     {
                         var prod = Products.FirstOrDefault(p => p.id == product.productId);

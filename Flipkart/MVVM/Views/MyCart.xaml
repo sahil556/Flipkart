@@ -12,6 +12,9 @@
                 VerticalTextAlignment="Center"
                 HorizontalTextAlignment="Start"/>
     </Shell.TitleView>
+     <ContentPage.Behaviors>
+        <behaviors:EventToCommandBehavior Command="{Binding InitCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
         <VerticalStackLayout>
             <Grid RowDefinitions="*">
             <CollectionView ItemsSource="{Binding CartProducts}">
