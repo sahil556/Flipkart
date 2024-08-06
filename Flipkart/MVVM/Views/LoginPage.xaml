@@ -100,5 +100,11 @@
                                 IsEnabled="False"
                                 Command="{Binding LoginCommand}"/>
                 </VerticalStackLayout>
+                <ActivityIndicator
+                Grid.Row="1"
+                HorizontalOptions="CenterAndExpand"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="CenterAndExpand" />
         </Grid>
 </ContentPage>

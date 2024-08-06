@@ -24,11 +24,17 @@ public partial class LoginPageViewModel: ObservableObject
     [ObservableProperty]
     public bool isPasswordVisible;
 
+    [ObservableProperty]
+    public bool isBusy;
+
     private LoginResponse loginResponse = new LoginResponse();
 
     [RelayCommand]
     public async void Login()
     {
+        if(IsBusy) 
+            return;
+        IsBusy = true;
         loginResponse = await authService.LoginAsync(Email, Password);
         if(loginResponse != null)
         {
@@ -38,6 +44,7 @@ public partial class LoginPageViewModel: ObservableObject
             shellViewModel.UserName = Email;
             await Shell.Current.GoToAsync("//HomePage/Home");
         }
+        IsBusy = false;
         // Settings.Instance.IsUserLoggedIn = true;
     }
 }
