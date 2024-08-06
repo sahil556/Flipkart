@@ -349,5 +349,15 @@
         </MenuItem.IconImageSource>
     </MenuItem>
 
+    <MenuItem Command="{Binding LogoutCommand}"
+            Text="Logout">
+        <MenuItem.IconImageSource>
+            <FontImageSource
+                FontFamily="Icons"
+                Glyph="{x:Static utilities:IconFont.Plus_Icon}"
+                Color="{StaticResource IconColor}"/>
+        </MenuItem.IconImageSource>
+    </MenuItem>
+
 </Shell>
 
