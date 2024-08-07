@@ -91,8 +91,9 @@ public class NotificationManagerService: INotificationManagerService
             .SetContentIntent(pendingIntent)
             .SetContentTitle(title)
             .SetContentText(message)
-            .SetLargeIcon(BitmapFactory.DecodeResource(Platform.AppContext.Resources, Resource.Drawable.dotnet_bot))
-            .SetSmallIcon(Resource.Drawable.medimg2);
+            .SetLargeIcon(BitmapFactory.DecodeResource(Platform.AppContext.Resources, Resource.Drawable.fliplogo))
+            .SetSmallIcon(Resource.Drawable.flipkartlogo)
+            .SetAutoCancel(true);
 
         Notification notification = builder.Build();
         compatManager.Notify(messageId++, notification);  
