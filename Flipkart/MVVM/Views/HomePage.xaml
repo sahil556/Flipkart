@@ -4,7 +4,8 @@
              xmlns:utilities="clr-namespace:Flipkart.Utilities"
              x:Class="Flipkart.MVVM.Views.HomePage"
              xmlns:viewModels="clr-namespace:Flipkart.MVVM.ViewModels"
-             Title="HomePage">
+             Title="HomePage"
+             BackgroundColor="White">
     <Grid RowDefinitions=".09*,.9*">
         <Border
             BackgroundColor="AliceBlue"

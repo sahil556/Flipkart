@@ -26,6 +26,8 @@ public partial class ProductPageViewModel: ObservableObject, IQueryAttributable
     {
         cartService = _cartService;
     }
+    INotificationManagerService notificationManager =
+    Application.Current?.MainPage?.Handler?.MauiContext?.Services.GetService<INotificationManagerService>();
 
     [RelayCommand]
     public async void AddProductToCart()
@@ -38,6 +40,7 @@ public partial class ProductPageViewModel: ObservableObject, IQueryAttributable
                 CancellationToken cancellationToken = new CancellationToken();
                 var toast = Toast.Make("Product Added", ToastDuration.Short, 14);
                 await toast.Show(cancellationToken);
+                notificationManager.SendNotification("Product Added", $"{Product.title} has been added to your cart");
            }
         }
     }

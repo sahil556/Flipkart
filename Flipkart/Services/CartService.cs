@@ -1,4 +1,6 @@
-﻿using Flipkart.MVVM.Models;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using Flipkart.MVVM.Models;
 using Flipkart.Services;
 
 namespace Flipkart.Services;
@@ -17,6 +19,13 @@ public class CartService: RestService
     public async Task<Cart> AddProductAsync(int productId, int quantity)
     {
         string userId = await SecureStorage.Default.GetAsync("userid");
+        if(string.IsNullOrEmpty(userId))
+        {
+            CancellationToken token = new CancellationToken();
+            var toast = Toast.Make("You need to Login First", ToastDuration.Short, 14);
+            toast.Show(token);
+            return null;
+        }
         var myCart = (await GetCartByUserIdAsync(userId));
         if(myCart.products.FirstOrDefault(p => p.productId == productId) == null)
         {   
