@@ -44,6 +44,16 @@ public partial class ProductPageViewModel: ObservableObject, IQueryAttributable
            }
         }
     }
+
+    [RelayCommand]
+    public async void ShowProduct(int id)
+    {
+        //TODO: Relace product from Similar Products to product
+        var CurrentProduct = Product;
+        Product = SimilarProducts.FirstOrDefault(p => p.id == id);
+        SimilarProducts.Remove(Product);
+        SimilarProducts.Add(CurrentProduct);
+    }
     public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             if(query.ContainsKey("product"))

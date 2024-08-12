@@ -112,7 +112,7 @@
                                         </Grid>
                                         <VerticalStackLayout.GestureRecognizers>
                                             <TapGestureRecognizer
-                                                Command="{Binding ShowProductCommand, Source={RelativeSource AncestorType={x:Type viewModels:HomePageViewModel}}}"
+                                                Command="{Binding ShowProductCommand, Source={RelativeSource AncestorType={x:Type viewModels:ProductPageViewModel}}}"
                                                 CommandParameter="{Binding id}">
                                             </TapGestureRecognizer>
                                         </VerticalStackLayout.GestureRecognizers>
