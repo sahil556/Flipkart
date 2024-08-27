@@ -307,8 +307,8 @@
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>
-    <FlyoutItem Title="My WishList"
-            Route="desertMirage2">
+    <FlyoutItem Title="My Location Access"
+            Route="LocationAccess">
         <FlyoutItem.Icon>
             <FontImageSource
                 FontFamily="Icons"
@@ -317,9 +317,20 @@
         </FlyoutItem.Icon>
 
         <ShellContent
-            Title="Night Dune Buggy"
-            ContentTemplate="{DataTemplate pages:HomePage}"
-            Route="nightDune">
+            Title="Location Cordinates"
+            ContentTemplate="{DataTemplate pages:LocationPage}"
+            Route="cordinatePage">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Icons"
+                    Glyph="{x:Static utilities:IconFont.Plus_Icon}"
+                    Color="{StaticResource IconColor}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+            Title="Location on Map"
+            ContentTemplate="{DataTemplate pages:AndroidMapPage}"
+            Route="mapPage">
             <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="Icons"
