@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Flipkart.MVVM.Views.LoginPage"
+             xmlns:local="clr-namespace:Flipkart.Resources.Localization"
              Title="LoginPage"
              xmlns:utilities="clr-namespace:Flipkart.Utilities"
              Shell.NavBarIsVisible="False">
@@ -32,7 +33,7 @@
                         <Grid RowDefinitions=".3*,.3*,.2*,*"
                               Margin="20,0,20,0">
                                 <VerticalStackLayout VerticalOptions="Center">
-                                        <Label Text="Log in for the best experience"
+                                        <Label Text="{Static local:resource.Login}"
                                                FontSize="18"
                                                FontAttributes="Bold"/>
                                         <Label Text="Enter your phone number to continue"

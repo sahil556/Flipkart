@@ -96,4 +96,17 @@
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\fontello.ttf" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Resources\Localization\resource.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>resource.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Localization\resource.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>resource.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
 </Project>
