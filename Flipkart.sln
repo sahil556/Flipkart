@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1706.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flipkart", "Flipkart\Flipkart.csproj", "{46AC1548-5D97-43CB-81A3-68BF333A9168}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlipkartTest", "FlipkartTest\FlipkartTest.csproj", "{A6998796-E342-4130-A3BA-4A122557498B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{46AC1548-5D97-43CB-81A3-68BF333A9168}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46AC1548-5D97-43CB-81A3-68BF333A9168}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46AC1548-5D97-43CB-81A3-68BF333A9168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6998796-E342-4130-A3BA-4A122557498B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6998796-E342-4130-A3BA-4A122557498B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6998796-E342-4130-A3BA-4A122557498B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6998796-E342-4130-A3BA-4A122557498B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

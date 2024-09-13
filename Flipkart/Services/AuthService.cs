@@ -2,10 +2,20 @@
 using System.Text.Json;
 using Flipkart.MVVM.Models;
 using Flipkart.Services.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Flipkart.Services;
 public class AuthService: RestService
 {
+    // declare logger
+    private readonly ILogger<AuthService> _logger;
+
+    // initialize _logger in constructor
+    public AuthService(ILogger<AuthService> logger)
+    {
+        _logger = logger;
+        _logger.LogInformation("AuthService Constructor");
+    }
     public bool IsUserLoggedIn
     {
         get
@@ -27,7 +37,7 @@ public class AuthService: RestService
     {
         var payload = new { username, password };
         var response =  await PostAsync<LoginResponse>("auth/login", payload);
-
+        _logger.LogInformation("Login Request Received");
         try{
             var userResponse = await client.GetAsync("users");
             userResponse.EnsureSuccessStatusCode();
@@ -43,6 +53,7 @@ public class AuthService: RestService
         catch(Exception ex)
         {
             Console.WriteLine($"Error fetching user details: {ex.Message}");
+            _logger.LogError("Error fetching user details: {0}", ex.Message);
         }
         return response;
     }
