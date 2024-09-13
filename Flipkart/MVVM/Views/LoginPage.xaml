@@ -36,8 +36,7 @@
                                        <Label Text="{x:Static local:language.HelloWorld}"
                                                FontSize="18"
                                                FontAttributes="Bold"/>
-                                               
-                                        <Label Text="Enter your phone number to continue"
+                                        <Label Text="{x:Static local:language.EnterEmailLabel}"
                                                TextColor="Grey"
                                                FontSize="15"
                                                Margin="0,5,0,0"/>

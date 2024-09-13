@@ -1,4 +1,6 @@
+using System.Globalization;
 using Flipkart.MVVM.ViewModels;
+using Flipkart.Resources.Localization;
 namespace Flipkart.MVVM.Views;
 
 public partial class LoginPage : ContentPage

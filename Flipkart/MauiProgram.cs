@@ -41,6 +41,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<AppShellViewModel>();
 		builder.Services.AddSingleton<ProductService>();
 		builder.Services.AddSingleton<CartService>();
+		builder.Services.AddTransient<LocalizationDemo>();
 
 
 #if __ANDROID__

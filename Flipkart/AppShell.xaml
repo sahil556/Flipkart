@@ -222,8 +222,9 @@
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>
-    <FlyoutItem Title="Choose Language"
-            Route="desertMirage2">
+    -->
+    <FlyoutItem Title="Localization Demo"
+            Route="Localization">
         <FlyoutItem.Icon>
             <FontImageSource
                 FontFamily="Icons"
@@ -233,8 +234,8 @@
 
         <ShellContent
             Title="Night Dune Buggy"
-            ContentTemplate="{DataTemplate pages:HomePage}"
-            Route="nightDune">
+            ContentTemplate="{DataTemplate pages:LocalizationDemo}"
+            Route="localizationDemo">
             <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="Icons"
@@ -243,7 +244,6 @@
             </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>
-     -->
     <FlyoutItem Title="My Account"
             Route="HomePage">
         <FlyoutItem.Icon>

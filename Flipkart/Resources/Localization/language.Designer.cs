@@ -68,5 +68,14 @@ namespace Flipkart.Resources.Localization {
                 return ResourceManager.GetString("HelloWorld", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your Email to continue
+        /// </summary>
+        internal static string EnterEmailLabel {
+            get {
+                return ResourceManager.GetString("EnterEmailLabel", resourceCulture);
+            }
+        }
     }
 }

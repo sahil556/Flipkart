@@ -120,4 +120,7 @@
   <data name="HelloWorld" xml:space="preserve">
     <value>This is Test Hello World</value>
   </data>
+  <data name="EnterEmailLabel" xml:space="preserve">
+    <value>Enter your Email to continue</value>
+  </data>
 </root>

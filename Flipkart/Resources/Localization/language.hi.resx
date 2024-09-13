@@ -120,4 +120,7 @@
   <data name="HelloWorld" xml:space="preserve">
     <value>यह टेस्ट हैलो वर्ल्ड है</value>
   </data>
+  <data name="EnterEmailLabel" xml:space="preserve">
+    <value>जारी रखने के लिए अपना ईमेल दर्ज करें</value>
+  </data>
 </root>
