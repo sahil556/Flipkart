@@ -64,10 +64,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.82" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
 
@@ -97,16 +97,16 @@
 	  <BundleResource Include="Resources\Fonts\fontello.ttf" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Compile Update="Resources\Localization\resource.Designer.cs">
+	  <Compile Update="Resources\Localization\language.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>resource.resx</DependentUpon>
+	    <DependentUpon>language.resx</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Localization\resource.resx">
+	  <EmbeddedResource Update="Resources\Localization\language.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>resource.Designer.cs</LastGenOutput>
+	    <LastGenOutput>language.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
 </Project>

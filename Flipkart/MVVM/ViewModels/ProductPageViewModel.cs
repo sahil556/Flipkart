@@ -8,7 +8,7 @@ using Flipkart.Services;
 
 namespace Flipkart.MVVM.ViewModels;
 
-[QueryProperty(nameof(ProductId),"Id")]
+[QueryProperty(nameof(productId),"Id")]
 public partial class ProductPageViewModel: ObservableObject, IQueryAttributable
 {
     [ObservableProperty]
