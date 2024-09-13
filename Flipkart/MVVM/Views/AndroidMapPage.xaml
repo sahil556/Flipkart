@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flipkart.MVVM.Views.AndroidMapPage"
+             xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+             Title="AndroidMapPage">
+    <!-- we will need API KEY from Google Cloud console in order to display map or to convert long and latitude to address -->
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <maps:Map x:Name="map" HeightRequest="600"/>
+    </VerticalStackLayout>
+</ContentPage>

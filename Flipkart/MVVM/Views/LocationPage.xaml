@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flipkart.MVVM.Views.LocationPage"
+             Title="LocationPage">
+    <VerticalStackLayout Spacing="10" Padding="10">
+        <Label 
+            FontSize="15"
+            FontAttributes="Bold"
+            Text="Your Location Will be Used to Provide Better Services"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Text="Get Last Known Location" Clicked="GetCachedLocation"/>
+        <Button Text="Get Current Location" Clicked="GetCurrentLocation"/>
+        <Button Text="Start Listening for Location Changes" Clicked="StartListening"/>
+        <Button Text="Stop Listening Location Changes" Clicked="OnStopListening"/>
+    </VerticalStackLayout>
+</ContentPage>
